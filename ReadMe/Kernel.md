@@ -16,9 +16,10 @@
 3. **getblk(...)**: Implements the basic *getblk* algorithm and returns the available buffer (if any)
 4. **brelse(...)**: Implements the basic *brelse* algorithm
 5. **updateBuffer(...)**: Updates the content of the buffer with specified values
-6. **updateRequestQueue()**: Writes the Request Queue with next set of available requests
-7. **addFailureRequest(...)**: Re-writes any Failed Request into the secondary_queue for reprocessing
-8. **main()**: This function performs the following tasks:
+6. **removeDuplicate(...)**: Removes any duplicates requests in the Request Queue
+7. **updateRequestQueue()**: Writes the Request Queue with next set of available requests
+8. **addFailureRequest(...)**: Re-writes any Failed Request into the secondary_queue for reprocessing
+9. **main()**: This function performs the following tasks:
             - Initializes the Hash Queue Array, Free List and Request Queue 
             - Updates the Request Queue for new Requests
             - Process each request one at a time based on the Request Type

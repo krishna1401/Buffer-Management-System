@@ -26,7 +26,7 @@ void requestedBlock(int signum){
     srand(time(NULL));
     int requestType = rand()%2 + 2; //Randomly select Delayed Write or Normal Read at release
     fout<<pid<<" "<<currentBlockNumber<<" "<<requestType<<"\n";
-    cout<<"("<<currentBlockNumber<<" , "<<requestType<<")\n";   //Release Block Request
+    cout<<"Release("<<currentBlockNumber<<" , "<<requestType<<")\n";   //Release Block Request
     fout.close();
 }
 
@@ -57,7 +57,7 @@ int main(){
         //Adding Request to the Secondary Queue
         remainingRequests += 1;
         fout<<pid<<" "<<currentBlockNumber<<" "<<requestType<<"\n";
-        cout<<"("<<currentBlockNumber<<" , "<<requestType<<")\n";
+        cout<<"Get("<<currentBlockNumber<<" , "<<requestType<<")\n";
         fout.close();   
         
         pause(); //Pause until the request is Completed

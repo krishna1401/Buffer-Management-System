@@ -94,6 +94,23 @@ void updateBuffer(Buffer* buffer,int blockNumber,int processID,string data){
     buffer->status = 1;
 }
 
+//Removing duplicate requests from Request Queue
+int removeDuplicate(int noOfRequests){
+    
+    for(int iterator1 = 0;iterator1 < noOfRequests;iterator1++){
+        int temp_processID = requestQueue[iterator1]->processID;
+        int temp_blockNumber = requestQueue[iterator1]->blockNumber;
+        for(int iterator2 = iterator1+1;iterator2 < noOfRequests;iterator2++){
+            if(temp_processID == requestQueue[iterator2]->processID && temp_blockNumber == requestQueue[iterator2]->blockNumber){
+                requestQueue[iterator2] = requestQueue[noOfRequests - 1];
+                noOfRequests--;
+                iterator2--;
+            }
+        }
+    }
+    return noOfRequests;
+}
+
 //Read Request from Secondary Queue
 int updateRequestQueue(){
     fstream fin,fout;
@@ -118,6 +135,8 @@ int updateRequestQueue(){
     //Replacing old File with New File
     remove("secondary_queue.ssv");
     rename("secondary_queue_temporary.ssv","secondary_queue.ssv");
+    
+    iterator = removeDuplicate(iterator);
     
     return iterator;
 }
@@ -158,6 +177,8 @@ int main(){
         if(no_of_requests > 0){
             for(int iterator = 0;iterator < no_of_requests;iterator++){
                 requestBlockNumber = requestQueue[iterator]->blockNumber;
+                cout<<"\t\tRemaining Requests : "<<no_of_requests<<"\n";
+                cout<<"\t\tCurrent Request : "<<requestQueue[iterator]->processID<<"  "<<requestBlockNumber<<"  "<<requestQueue[iterator]->requestType<<"\n";
                 if(requestBlockNumber != 0){   //Valid Block Request
                     if(requestQueue[iterator]->requestType == 1){   //Get Block Request
                         Buffer* block = getblk(requestBlockNumber);
