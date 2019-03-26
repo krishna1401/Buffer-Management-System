@@ -24,7 +24,7 @@ void requestedBlock(int signum){
     fstream fout;
     fout.open("secondary_queue.ssv",ios::app);
     srand(time(NULL));
-    int requestType = 3;//rand()%2 + 2; //Randomly select Delayed Write or Normal Read at release
+    int requestType = rand()%2 + 2; //Randomly select Delayed Write or Normal Read at release
     fout<<pid<<" "<<currentBlockNumber<<" "<<requestType<<"\n";
     cout<<"("<<currentBlockNumber<<" , "<<requestType<<")\n";   //Release Block Request
     fout.close();
@@ -39,7 +39,7 @@ int main(){
     cout<<"Process ID : "<<pid<<"\n";
     srand(time(NULL)); //Initializing Random Seed
     
-    int no_of_requests = 2;//rand()%10 + 1; //Maximum 10 request can be made by a process
+    int no_of_requests = rand()%10 + 1; //Maximum 10 request can be made by a process
     cout<<"No of Requests : "<<no_of_requests<<"\n";
     cout<<"(Block Number , Request Type)\n";
     
