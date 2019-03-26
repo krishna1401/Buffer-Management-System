@@ -22,6 +22,6 @@
             - Initializes the Hash Queue Array, Free List and Request Queue 
             - Updates the Request Queue for new Requests
             - Process each request one at a time based on the Request Type
-            - Signals the specified Process on successfull completion the Request for the process
+            - Signals the specified Process on successful completion the Request for the process
             - Displays the status of the Buffers in the Hash Queue and Free List after each Request is processed
             
